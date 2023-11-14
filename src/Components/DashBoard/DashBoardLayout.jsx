@@ -1,7 +1,6 @@
 import { Outlet, Link, useNavigate, useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import SidebarNew from "../Sidebar/SidebarNew";
-import "./DashBoard.css";
 function DashBoardLayout() {
   const navigate = useNavigate();
   const location = useLocation();
