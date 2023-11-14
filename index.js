@@ -22,6 +22,12 @@ app.use("/customer", customerRouter);
 app.use("/ticket", ticketRouter);
 // app.use(verifyUser);
 
+// Catch all handler for all other request.
+app.use("*", (req, res) => {
+  res.json({ msg: "Welcome" }).end();
+  // res.sendFile(path.join(__dirname, "./index.html"));
+});
+
 const startServer = async function () {
   try {
     app.listen(process.env.PORT, () => {
