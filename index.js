@@ -30,7 +30,7 @@ app.use("*", (req, res) => {
 
 const startServer = async function () {
   try {
-    app.listen(process.env.PORT, () => {
+    app.listen(port, () => {
       console.log(`Server is running on port : ${port}`);
     });
   } catch (error) {
