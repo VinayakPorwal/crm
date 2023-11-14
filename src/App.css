@@ -1,0 +1,63 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --white: #fffefe;
+  --whiteblue: #EDF3F8;
+  --bgWhite: #e9e8e9;
+  --purple: #8a5bf8;
+  --blue:#007BFF;
+  --skyblue: #28abe0;
+  --vibrantBlue: #0185ff;
+  --darkblue: #4222fd;
+  --teal: #10b1ad;
+  --yellow: #f6dc01;
+  --lightpink: #ff6ade;
+  --gray: #afafac;
+  --darkgray: #808080;
+  --black: #161713;
+  --boxshadow: box-shadow: 0 40px 80px rgba(0, 0, 0, .1);
+
+  --width: 32px;
+  --height: 32px;
+  --radius: 50%;
+  --scale: 1;
+}
+
+/* Youtube Loader  */
+.Ytloader {
+  --height-of-loader: 4px;
+  --loader-color: #0071e2;
+  width: 100%;
+  height: var(--height-of-loader);
+  border-radius: 30px;
+  background-color: rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.Ytloader::before {
+  content: "";
+  position: absolute;
+  background: var(--loader-color);
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  border-radius: 30px;
+  animation: moving 1s ease-in-out infinite;
+}
+
+@keyframes moving {
+  50% {
+    width: 100%;
+  }
+
+  100% {
+    width: 0;
+    right: 0;
+    left: unset;
+  }
+}
