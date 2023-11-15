@@ -6,10 +6,10 @@
 :root {
   --foreground-rgb: 0, 0, 0;
   --white: #fffefe;
-  --whiteblue: #EDF3F8;
+  --whiteblue: #edf3f8;
   --bgWhite: #e9e8e9;
   --purple: #8a5bf8;
-  --blue:#007BFF;
+  --blue: #007bff;
   --skyblue: #28abe0;
   --vibrantBlue: #0185ff;
   --darkblue: #4222fd;
@@ -19,7 +19,7 @@
   --gray: #afafac;
   --darkgray: #808080;
   --black: #161713;
-  --boxshadow: box-shadow: 0 40px 80px rgba(0, 0, 0, .1);
+  --boxshadow: 0 40px 80px rgba(0, 0, 0, 0.1);
 
   --width: 32px;
   --height: 32px;
@@ -60,4 +60,9 @@
     right: 0;
     left: unset;
   }
+}
+
+::-webkit-scrollbar {
+  height: 0px;
+  width: 0px;
 }
