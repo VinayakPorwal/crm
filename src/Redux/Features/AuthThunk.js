@@ -34,8 +34,10 @@ export const signupUser = (userData) => async (dispatch) => {
   dispatch(signupStart());
   try {
     const user = await api.signUp(userData);
-    sessionStorage.setItem("email", user.email);
+    console.log(user);
+    sessionStorage.setItem("email", user.data.email);
     dispatch(signupSuccess());
+    return user.data.success;
   } catch (error) {
     dispatch(signupFailure(error.response.data.msg));
   }

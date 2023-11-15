@@ -5,7 +5,8 @@ const initialState = {
   user: null, // User data when logged in
   isAuthenticated: false, // Boolean to track if the user is authenticated
   loading: false, // To track API loading state
-  error: null, // To store error messages
+  error: null,
+  // To store error messages
 };
 
 export const authSlice = createSlice({

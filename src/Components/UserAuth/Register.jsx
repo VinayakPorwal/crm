@@ -27,7 +27,8 @@ export default function Register() {
   const ServerError = useSelector((state) => state.auth.error);
 
   const handleSignup = () => {
-    dispatch(signupUser({ name, email, password, secretKey }));
+    dispatch(signupUser({ name, email, password, secretKey })) &&
+      navigate("/verification");
   };
 
   // ----- Toggle Passowrd Visibility
