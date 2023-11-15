@@ -21,7 +21,8 @@ export default function AddTicket() {
   const createTicket = () => {
     if (title == "") setError("Title can't be Empty.");
     else if (description == "") setError("Description can't be Empty.");
-    else if (email == "") setError("Email can't be Empty.");
+    else if (user.role == "admin" && email == "")
+      setError("Email can't be Empty.");
     else {
       dispatch(
         addTicket({
@@ -88,7 +89,7 @@ export default function AddTicket() {
                 ></textarea>
               </div>
               <div>
-                {user && user.role == "admin" ? (
+                {user && user.role == "admin" && (
                   <>
                     <label
                       htmlFor="email"
@@ -107,24 +108,24 @@ export default function AddTicket() {
                       required
                     />
                   </>
-                ) : (
-                  <>
-                    <label
-                      htmlFor="email"
-                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    >
-                      Admin Email (optional)
-                    </label>
-                    <input
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      type="Email"
-                      name="email"
-                      id="email"
-                      placeholder="••••••••"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                    />
-                  </>
+                  // ) : (
+                  //   <>
+                  //     <label
+                  //       htmlFor="email"
+                  //       className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  //     >
+                  //       Admin Email (optional)
+                  //     </label>
+                  //     <input
+                  //       value={email}
+                  //       onChange={(e) => setEmail(e.target.value)}
+                  //       type="Email"
+                  //       name="email"
+                  //       id="email"
+                  //       placeholder="••••••••"
+                  //       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                  //     />
+                  //   </>
                 )}
               </div>
 
