@@ -5,6 +5,7 @@ export default {
     return api.get("/ticket/all", {
       headers: {
         authorization: token,
+        "Access-Control-Allow-Origin": "*",
       },
     });
   },
@@ -12,6 +13,7 @@ export default {
     return api.post("/ticket/add", data, {
       headers: {
         authorization: token,
+        "Access-Control-Allow-Origin": "*",
       },
     });
   },
@@ -20,6 +22,7 @@ export default {
     return api.put("/ticket/update", data, {
       headers: {
         authorization: token,
+        "Access-Control-Allow-Origin": "*",
       },
     });
   },
@@ -27,6 +30,7 @@ export default {
     return api.get("/ticket/Customer/" + id, {
       headers: {
         authorization: token,
+        "Access-Control-Allow-Origin": "*",
       },
     });
   },
@@ -34,6 +38,7 @@ export default {
     return api.get("/ticket/Admin/" + id, {
       headers: {
         authorization: token,
+        "Access-Control-Allow-Origin": "*",
       },
     });
   },

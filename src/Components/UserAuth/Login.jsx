@@ -16,7 +16,7 @@ function LoginPage() {
   const error = useSelector((state) => state.auth.error);
 
   const handleLogin = () => {
-    dispatch(loginUser({ email, password }));
+    dispatch(loginUser({ email: email.toLowerCase, password }));
   };
 
   useEffect(() => {

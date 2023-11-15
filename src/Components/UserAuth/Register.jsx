@@ -27,7 +27,9 @@ export default function Register() {
   const ServerError = useSelector((state) => state.auth.error);
 
   const handleSignup = () => {
-    dispatch(signupUser({ name, email, password, secretKey }));
+    dispatch(
+      signupUser({ name, email: email.toLowerCase, password, secretKey })
+    );
   };
 
   // ----- Toggle Passowrd Visibility
@@ -56,7 +58,7 @@ export default function Register() {
     <div className="min-h-screen bg-blue-500">
       <div className="flex items-center h-screen bg-blue-400">
         <div className="mx-auto w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
-          <form className="space-y-6" action="#">
+          <div className="space-y-6">
             {/* -----Logo------*/}
             <h1 className="hidden md:block font-bold text-md md:text-xl text-center mx-2">
               <i className="text-emerald-600 font-mono">Code</i>
@@ -202,7 +204,7 @@ export default function Register() {
                 </Link>
               </a>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
