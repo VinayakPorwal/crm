@@ -9,7 +9,7 @@ export default function AddTicket() {
   const [description, setDesc] = useState("");
   const [email, setEmail] = useState("");
   const [added, setAdded] = useState(false);
-
+  const [error, setError] = useState("");
   const user = useSelector((state) => state.auth.user);
 
   let navigate = useNavigate();
@@ -19,7 +19,10 @@ export default function AddTicket() {
   const ServerError = useSelector((state) => state.ticket.error);
 
   const createTicket = () => {
-    if (title & description & email) {
+    if (title == "") setError("Title can't be Empty.");
+    else if (description == "") setError("Description can't be Empty.");
+    else if (email == "") setError("Email can't be Empty.");
+    else {
       dispatch(
         addTicket({
           title,
@@ -43,6 +46,7 @@ export default function AddTicket() {
                 New Ticket
               </h5>
               {loading && <div className="Ytloader"></div>}
+              {error && <div className="text-red-300">{error}</div>}
               <div className="text-red-400">{ServerError}</div>
               <div>
                 <label
@@ -94,7 +98,7 @@ export default function AddTicket() {
                     </label>
                     <input
                       value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      onChange={(e) => setEmail(e.target.value.toLowerCase())}
                       type="Email"
                       name="email"
                       id="email"
