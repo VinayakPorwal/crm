@@ -51,7 +51,7 @@ const signUp = async (req, res) => {
 
     // Send an email with the OTP
     const mailOptions = {
-      from: "your-email@example.com", // Update with your email
+      from: "crmServer@gmail.com", // Update with your email
       to: email,
       subject: emailSubject,
       html: `
@@ -62,7 +62,7 @@ const signUp = async (req, res) => {
         Team CRM`,
     };
 
-    // await mailer.sendMail(mailOptions);
+    await mailer.sendMail(mailOptions);
 
     return res.status(200).json({
       success: true,
