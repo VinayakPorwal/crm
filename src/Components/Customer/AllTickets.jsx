@@ -8,6 +8,7 @@ import Modal from "./modal";
 import { useParams } from "react-router-dom";
 function AllTickets() {
   const dispatch = useDispatch();
+  const loading = useSelector((state) => state.ticket.loading);
   const user = useSelector((state) => state.auth.user);
   const tickets = useSelector((state) => state.ticket.tickets);
   const { id } = useParams();
@@ -68,9 +69,9 @@ function AllTickets() {
   return (
     <div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <div className="flex items-center justify-between pb-4">
-          <div>
-            <button
+        <div className="flex items-center justify-between sm:pb-4">
+          {/* <div> */}
+          {/* <button
               id="dropdownRadioButton"
               data-dropdown-toggle="dropdownRadio"
               className="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
@@ -101,9 +102,9 @@ function AllTickets() {
                   d="m1 1 4 4 4-4"
                 />
               </svg>
-            </button>
-            {/* <!-- Dropdown menu --> */}
-            <div
+            </button> */}
+          {/* <!-- Dropdown menu --> */}
+          {/* <div
               id="dropdownRadio"
               className="z-10 hidden w-48 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
               data-popper-reference-hidden=""
@@ -206,30 +207,18 @@ function AllTickets() {
                   </div>
                 </li>
               </ul>
-            </div>
-          </div>
+            </div> */}
+          {/* </div> */}
           <div className="flex">
-            <div className="mx-2 inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            {/* <div className="mx-2 inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
               +
-            </div>
+            </div> */}
             <label htmlFor="table-search" className="sr-only">
               Search
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <svg
-                  className="w-5 h-5 text-gray-500 dark:text-gray-400"
-                  aria-hidden="true"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
+                <i className="fa fa-search text-gray-900 dark:text-white"></i>
               </div>
               <input
                 type="text"
@@ -238,16 +227,17 @@ function AllTickets() {
                   setSearchQuery(e.target.value);
                   handleSearch();
                 }}
-                className="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-[90vw] sm:w-[80vw] bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Search Tickets"
               />
             </div>
           </div>
         </div>
-        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-              <th scope="col" className="p-4">
+        <div className="max-h-[100vh] overflow-scroll">
+          <table className="sm:table hidden w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <tr>
+                {/* <th scope="col" className="p-4">
                 <div className="flex items-center">
                   <input
                     id="checkbox-all-search"
@@ -258,35 +248,35 @@ function AllTickets() {
                     checkbox
                   </label>
                 </div>
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Ticket Title
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Customer Name
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Date
-              </th>
-              <th scope="col" className="px-6 py-3">
-                status
-              </th>
-              <th scope="col" className="px-6 py-3">
-                View
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {visibleTickets &&
-              (searchResults && searchResults.length > 0
-                ? searchResults
-                : visibleTickets
-              ).map((data, i) => (
-                <tr
-                  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-                  key={i}
-                >
-                  <td className="w-4 p-4">
+              </th> */}
+                <th scope="col" className="px-6 py-3">
+                  Ticket Title
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Customer Name
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Date
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  status
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  View
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {visibleTickets &&
+                (searchResults && searchResults.length > 0
+                  ? searchResults
+                  : visibleTickets
+                ).map((data, i) => (
+                  <tr
+                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                    key={i}
+                  >
+                    {/* <td className="w-4 p-4">
                     <div className="flex items-center">
                       <input
                         id="checkbox-table-search-1"
@@ -300,35 +290,83 @@ function AllTickets() {
                         checkbox
                       </label>
                     </div>
-                  </td>
-                  <th
-                    scope="row"
-                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    {data.title}
-                  </th>
-                  <td className="px-6 py-4">{data.customerId.name}</td>
-                  <td className="px-6 py-4">
-                    {new Date(data.initiateDate).toLocaleDateString()}
-                  </td>
-                  <td className="px-6 py-4">{data.status}</td>
-                  <td className="px-6 py-4">
-                    <a
-                      href="#"
-                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                  </td> */}
+                    <th
+                      scope="row"
+                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                     >
-                      <Modal data={data} />
-                    </a>
-                  </td>
-                </tr>
+                      {data.title}
+                    </th>
+                    <td className="px-6 py-4">{data.customerId.name}</td>
+                    <td className="px-6 py-4">
+                      {new Date(data.initiateDate).toLocaleDateString()}
+                    </td>
+                    <td className="px-6 py-4">{data.status}</td>
+                    <td className="px-6 py-4">
+                      <a
+                        href="#"
+                        className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                      >
+                        <Modal data={data} />
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+
+          {!loading && visibleTickets && visibleTickets.length == 0 && (
+            <div className="text-black dark:text-white text-center p-2 m-2">
+              No data
+            </div>
+          )}
+          {loading && (
+            <div className="text-black dark:text-white text-center p-2 m-2">
+              loading...
+            </div>
+          )}
+
+          <div className="block sm:hidden">
+            {visibleTickets &&
+              (searchResults && searchResults.length > 0
+                ? searchResults
+                : visibleTickets
+              ).map((data, i) => (
+                <div
+                  class="my-4 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+                  key={i}
+                >
+                  <p className="flex justify-between items-center">
+                    <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
+                      {data.title}
+                    </h5>
+                    {data.status == "Open" ? (
+                      <i className="fa-regular fa-envelope-open pl-2 text-xl text-blue-400"></i>
+                    ) : (
+                      <i className="fa-regular fa-envelope pl-2 text-xl text-green-400"></i>
+                    )}
+                  </p>
+                  <p class="mb-1 font-semibold text-gray-800 dark:text-gray-200">
+                    <i className="fa-regular fa-user pr-2 text-lg text-blue-400"></i>{" "}
+                    {data.customerId.name}
+                  </p>
+                  <p class="mb-1 font-normal text-gray-700 dark:text-gray-400">
+                    Created on:{" "}
+                    {new Date(data.initiateDate).toLocaleDateString()}
+                  </p>
+                  <p class="mb-2 font-normal text-gray-700 dark:text-gray-400">
+                    {data.status}
+                  </p>
+                  <a
+                    href="#"
+                    class="block py-1 items-center text-center font-medium rounded-lg border-2 border-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 "
+                  >
+                    <Modal data={data} />
+                  </a>
+                </div>
               ))}
-          </tbody>
-        </table>
-        {visibleTickets && visibleTickets.length == 0 && (
-          <div className="text-black dark:text-white text-center p-2 m-2">
-            No data
           </div>
-        )}
+        </div>
       </div>
     </div>
   );

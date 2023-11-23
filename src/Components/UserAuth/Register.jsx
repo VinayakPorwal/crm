@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { signupUser } from "../../Redux/Features/AuthThunk";
-// import { Signup } from "../Fetch/Fetch";
-import authApi from "../../services/auth";
+import { signupUser, checkAuth } from "../../Redux/Features/AuthThunk";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -52,6 +50,13 @@ export default function Register() {
       setError("Password does not match!");
     else setError("");
   }, [password, confirmPassword]);
+
+  useEffect(() => {
+    dispatch(checkAuth());
+  }, []);
+  useEffect(() => {
+    isAuthenticated && navigate("/");
+  }, [isAuthenticated]);
 
   return (
     <div className="min-h-screen bg-blue-500">
